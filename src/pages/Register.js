@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Logo,FornRow } from '../components';
+import { Logo,FormRow } from '../components';
 import Wrapper from '../assets/wrappers/RegisterPage';
 import { toast } from 'react-toastify'
 import { useDispatch, useSelector } from 'react-redux';
@@ -59,13 +59,13 @@ function Register() {
             <h3>{values.isMember ? 'Login' : 'Resgiter'}</h3>
             {/* name field */}
             {
-            !values.isMember &&  <FornRow type="text" name="name" value={values.name} handleChange={handleChange}/>
+            !values.isMember &&  <FormRow type="text" name="name" value={values.name} handleChange={handleChange}/>
             
             }
             {/* email field */}
-            <FornRow type="email" name="email" value={values.email} handleChange={handleChange}/>
+            <FormRow type="email" name="email" value={values.email} handleChange={handleChange}/>
             {/* password field */}
-            <FornRow type="password" name="password" value={values.password} handleChange={handleChange}/>
+            <FormRow type="password" name="password" value={values.password} handleChange={handleChange}/>
 
             <button type="submit" className="btn btn-block" disabled={isLoading}>
                 {isLoading ? 'Loading...' : 'submit'}
