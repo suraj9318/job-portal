@@ -33,10 +33,14 @@ const userSlice = createSlice ({
             console.log(state.isSidebarOpen);
             state.isSidebarOpen = !state.isSidebarOpen
         },
-        logoutUser :(state) => {
+        logoutUser :(state, {payload}) => {
             state.user = null
             state.isSidebarOpen = false
             removeUserFromLocalStorage()
+            if(payload){
+                toast.success(payload)
+            }
+
         }
     },
     extraReducers :{

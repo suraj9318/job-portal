@@ -15,7 +15,7 @@ const initialState={
 
 function Register() {
     const {user, isLoading} = useSelector(store => store.user)
-    const dispath = useDispatch();
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
    
@@ -35,10 +35,10 @@ function Register() {
             return;
         }
         if(isMember){
-            dispath(loginUser({email, password }))
+            dispatch(loginUser({email, password }))
             return;
         }
-        dispath(registerUser({name, email, password}))
+        dispatch(registerUser({name, email, password}))
     }
     const toggleMember = () =>{
         setValues({...values, isMember :!values.isMember  })
@@ -70,6 +70,19 @@ function Register() {
             <button type="submit" className="btn btn-block" disabled={isLoading}>
                 {isLoading ? 'Loading...' : 'submit'}
             </button>
+
+
+            <button
+  type='button'
+  className='btn btn-block btn-hipster'
+  disabled={isLoading}
+  onClick={() => {
+    dispatch(loginUser({ email: 'testUser@test.com', password: 'secret' }));
+  }}
+>
+  {isLoading ? 'loading...' : 'demo'}
+</button>
+
 
             <p> {values.isMember ? 'Not a member yet?' : 'Already a member?'}
                 <button type='button' className='member-btn' onClick={toggleMember}>
