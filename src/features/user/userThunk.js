@@ -1,3 +1,4 @@
+import authHeader from "../../utils/authHeader";
 import customFetch, { checkForUnuthorizedResponse } from "../../utils/axios";
 import { clearAllJobPage } from "../allJobs/allJobsSlice";
 import { clearValues } from "../job/jobSlice";
@@ -23,11 +24,7 @@ export const userLoginThunk = async (url,user,thunkAPI) =>{
 
 export const updateUserThunk = async (url,user,thunkAPI) =>{
     try{
-        const resp = await customFetch.patch(url, user,{
-            headers : {
-                authorization : `Bearer ${thunkAPI.getState().user.user.token}`
-            }
-        })
+        const resp = await customFetch.patch(url, user,authHeader(thunkAPI))
         return resp.data
     }catch(error){
         return checkForUnuthorizedResponse(error, thunkAPI);

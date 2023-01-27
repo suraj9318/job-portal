@@ -6,10 +6,12 @@ const customFetch = axios.create({
 })
 
 export const checkForUnuthorizedResponse = (error, thunkAPI) =>{
-    if(error.response.status === 401){
-        thunkAPI.dispatch(clearStore())
-        return thunkAPI.rejectWithValues('Unauthorize! Logging Out...')
-    }
-    return thunkAPI.rejectWithValues(error.response.data.msg)
+    if (error.response.status === 401) {
+        thunkAPI.dispatch(clearStore());
+        return thunkAPI.rejectWithValue('Unauthorized! Logging Out...');
+      }
+      return thunkAPI.rejectWithValue(error.response.data.msg);
 }
+
+
 export default customFetch;

@@ -1,3 +1,4 @@
+import authHeader from "../../utils/authHeader";
 import customFetch, {checkForUnuthorizedResponse} from "../../utils/axios";
 
 
@@ -12,11 +13,7 @@ export const allJobsThunk =  async(_,thunkAPI)=>{
       }
     
     try{
-        const response = await customFetch.get(url,{
-          headers:{
-            authorization : `Bearer ${thunkAPI.getState().user.user.token}`
-          }
-        })
+        const response = await customFetch.get(url,authHeader(thunkAPI))
         return response.data;
     }catch(error){
       return checkForUnuthorizedResponse(error, thunkAPI);
@@ -25,11 +22,7 @@ export const allJobsThunk =  async(_,thunkAPI)=>{
 
   export const showStatsThunk =  async (_,thunkAPI)=>{
     try{
-      const resp = await customFetch.get('/jobs/stats',{
-        headers:{
-          authorization : `Bearer ${thunkAPI.getState().user.user.token}`
-        }
-      })
+      const resp = await customFetch.get('/jobs/stats',authHeader(thunkAPI))
       return resp.data
     }catch(error){
       return checkForUnuthorizedResponse(error, thunkAPI);
