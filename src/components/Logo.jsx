@@ -1,6 +1,5 @@
 import React from 'react'
-// import img from '../assets/images/logo.svg'; 
-import img from '../assets/images/logo1.png'
+import img from '../assets/images/logo.svg'; 
 function Logo() {
   return (
     <div>
